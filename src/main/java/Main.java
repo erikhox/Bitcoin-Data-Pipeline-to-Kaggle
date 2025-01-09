@@ -6,31 +6,37 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.time.LocalDateTime;
 import static java.lang.Thread.sleep;
 
 public class Main {
     public static void main(String[] args) {
+        //installing and setting up the chrome driver
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
 
+        //setting the path for where the CSV file should be created
+        String path = "src/main/csv_files/";
+
+        //setting the name for the CSV file
+        String name = "test1.csv";
+
         try {
-            File file = new File("src/main/csv_files/" + "test1.csv.csv");
+            //preparing the CSV file to be created and creating its header
+            File file = new File(path + name);
             FileWriter outputFile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputFile);
             String[] header = {"DateTime", "Price", "Bid", "Ask"};
             writer.writeNext(header);
 
+            //setting the link to scrape from
             driver.get("https://bitcointicker.co/coinbase/btc/usd/10m/");
 
-            ArrayList<LocalDateTime> times = new ArrayList<>();
-            ArrayList<String> prices = new ArrayList<>();
-            ArrayList<String> bids = new ArrayList<>();
-            ArrayList<String> asks = new ArrayList<>();
-
+            //setting the variables for the while loop
             int i = 0;
             int previousMin = LocalDateTime.now().getMinute();
+
+            //main loop which scrapes the data every minute and writes to csv file
             while (i < 10) {
                 int currentMin = LocalDateTime.now().getMinute();
 
@@ -39,25 +45,28 @@ public class Main {
                     String price = driver.findElement(By.id("lastTrade")).getText();
                     String bid = driver.findElement(By.id("buy")).getText();
                     String ask = driver.findElement(By.id("sell")).getText();
-                    prices.add(price);
-                    times.add(LocalDateTime.now().withSecond(0).withNano(0));
-                    bids.add(bid);
-                    asks.add(ask);
+
+                    //writing the scraped data to the CSV file
                     String[] line = {time, price, bid, ask};
                     writer.writeNext(line);
+
+                    //updating the variables for the while loop
                     previousMin = currentMin;
                     i++;
+
+                    //sleeping for 55 seconds to save computing power
                     sleep(55000);
                 }
+                //checking every 0.5 seconds if the minute updated
                 sleep(500);
             }
+            //closing up the chrome driver and CSV writer
             driver.quit();
             writer.close();
-            for (int j = 0; j < prices.size(); j++) {
-                System.out.println("price: " + prices.get(j) + " -- time: " + times.get(j) + " -- ask: " + asks.get(j) + " -- bid: " + bids.get(j));
-            }
+
+        //catching possible errors that can appear
         } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            System.out.println("Error with FileWriter() or sleep()");
             driver.quit();
         }
     }
