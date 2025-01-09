@@ -11,7 +11,7 @@ public class Main {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
         try {
-            driver.get("https://bitcointicker.co/");
+            driver.get("https://bitcointicker.co/coinbase/btc/usd/10m/");
 
             ArrayList<String> prices = new ArrayList<>();
             ArrayList<LocalDateTime> times = new ArrayList<>();
