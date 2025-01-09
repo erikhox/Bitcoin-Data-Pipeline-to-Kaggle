@@ -40,7 +40,9 @@ public class Main {
             while (i < 10) {
                 int currentMin = LocalDateTime.now().getMinute();
 
+                //checks if the minute changed
                 if (currentMin != previousMin) {
+                    //sets variables and scrapes data
                     String time = LocalDateTime.now().withSecond(0).withNano(0).toString();
                     String price = driver.findElement(By.id("lastTrade")).getText();
                     String bid = driver.findElement(By.id("buy")).getText();
@@ -57,8 +59,8 @@ public class Main {
                     //sleeping for 55 seconds to save computing power
                     sleep(55000);
                 }
-                //checking every 0.5 seconds if the minute updated
-                sleep(500);
+                //checking every 0.25 seconds if the minute updated
+                sleep(250);
             }
             //closing up the chrome driver and CSV writer
             driver.quit();
