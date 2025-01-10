@@ -3,7 +3,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -15,33 +14,30 @@ public class Main {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
 
-        //setting the path for where the CSV file should be created
-        String path = "src/main/csv_files/";
-
-        //setting the name for the CSV file
-        String name = "test1.csv";
+        //creates the file, comment out if it already exists
+        String name = "test";
+        String filePath = "src/main/csv_files/" + name + ".csv";
+        //createFile.create(name);
 
         try {
-            //preparing the CSV file to be created and creating its header
-            File file = new File(path + name);
-            FileWriter outputFile = new FileWriter(file);
-            CSVWriter writer = new CSVWriter(outputFile);
-            String[] header = {"DateTime", "Price", "Bid", "Ask"};
-            writer.writeNext(header);
-
             //setting the link to scrape from
             driver.get("https://bitcointicker.co/coinbase/btc/usd/10m/");
+
+            //setting up for CSV file modification
+            FileWriter mFileWriter = new FileWriter(filePath, true);
+            CSVWriter writer = new CSVWriter(mFileWriter);
 
             //setting the variables for the while loop
             int i = 0;
             int previousMin = LocalDateTime.now().getMinute();
 
             //main loop which scrapes the data every minute and writes to csv file
-            while (i < 10) {
+            while (i < 2) {
                 int currentMin = LocalDateTime.now().getMinute();
 
                 //checks if the minute changed
                 if (currentMin != previousMin) {
+
                     //sets variables and scrapes data
                     String time = LocalDateTime.now().withSecond(0).withNano(0).toString();
                     String price = driver.findElement(By.id("lastTrade")).getText();
@@ -51,6 +47,9 @@ public class Main {
                     //writing the scraped data to the CSV file
                     String[] line = {time, price, bid, ask};
                     writer.writeNext(line);
+
+                    //flushing the data to store to drive
+                    writer.flush();
 
                     //updating the variables for the while loop
                     previousMin = currentMin;
@@ -68,7 +67,7 @@ public class Main {
 
         //catching possible errors that can appear
         } catch (InterruptedException | IOException e) {
-            System.out.println("Error with FileWriter() or sleep()");
+            System.out.println("Error with sleep()");
             driver.quit();
         }
     }
