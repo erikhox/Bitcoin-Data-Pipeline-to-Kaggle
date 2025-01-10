@@ -14,9 +14,10 @@ public class Main {
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
 
-        //creates the file, comment out if it already exists
         String name = "test";
-        String filePath = "src/main/csv_files/" + name + ".csv";
+        String filePath = "src/main/csv_files/";
+        String fullName = filePath + name + ".csv";
+        //creates the file, comment out next line if it already exists
         //createFile.create(name);
 
         try {
@@ -24,7 +25,7 @@ public class Main {
             driver.get("https://bitcointicker.co/coinbase/btc/usd/10m/");
 
             //setting up for CSV file modification
-            FileWriter mFileWriter = new FileWriter(filePath, true);
+            FileWriter mFileWriter = new FileWriter(fullName, true);
             CSVWriter writer = new CSVWriter(mFileWriter);
 
             //setting the variables for the while loop
@@ -67,7 +68,7 @@ public class Main {
 
         //catching possible errors that can appear
         } catch (InterruptedException | IOException e) {
-            System.out.println("Error with sleep()");
+            System.out.println("Error with sleep() or writer");
             driver.quit();
         }
     }
