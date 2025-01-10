@@ -3,6 +3,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -13,6 +15,8 @@ public class Main {
         //installing and setting up the chrome driver
         WebDriverManager.chromedriver().setup();
         WebDriver driver = new ChromeDriver();
+
+        String stopFilePath = "src/main/stop.txt";
 
         String name = "test";
         String filePath = "src/main/csv_files/";
@@ -29,11 +33,15 @@ public class Main {
             CSVWriter writer = new CSVWriter(mFileWriter);
 
             //setting the variables for the while loop
-            int i = 0;
             int previousMin = LocalDateTime.now().getMinute();
 
             //main loop which scrapes the data every minute and writes to csv file
-            while (i < 2) {
+            while (true) {
+                if (!new File(stopFilePath).exists()) {
+                    System.out.println("stop.txt does not exists, exiting program");
+                    break;
+                }
+
                 int currentMin = LocalDateTime.now().getMinute();
 
                 //checks if the minute changed
@@ -54,7 +62,6 @@ public class Main {
 
                     //updating the variables for the while loop
                     previousMin = currentMin;
-                    i++;
 
                     //sleeping for 55 seconds to save computing power
                     sleep(55000);
