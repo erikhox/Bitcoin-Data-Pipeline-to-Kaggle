@@ -76,4 +76,4 @@ Distributed under the Unlicense License. See `LICENSE.txt` for more information.
 
 Erik Hoxhaj: [linkedin](https://www.linkedin.com/in/erikhoxhaj/) - [personal website](https://www.erikhoxhaj.com/) - erik.hoxhaj@outlook.com
 
-Project Link: [github.com/erikhox/dataPipelineProject](https://github.com/erikhox/dataPipelineProject/)
+Project Link: [github.com/erikhox/Bitcoin-Data-Pipeline-to-Kaggle ](https://github.com/erikhox/Bitcoin-Data-Pipeline-to-Kaggle )
