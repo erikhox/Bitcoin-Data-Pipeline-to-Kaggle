@@ -25,7 +25,7 @@ To get a local copy up and running follow these simple example steps.
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a Kaggle json at [https://example.com](https://example.com)
+1. Get a Kaggle json by following the section under "Authentication" [kaggle.com/docs/api]([https://www.kaggle.com/docs/api])
 2. Install maven on windows or linux
 3. put the json in the locations for windows and linux respectfully 
     * C:\Users\username\.kaggle\
