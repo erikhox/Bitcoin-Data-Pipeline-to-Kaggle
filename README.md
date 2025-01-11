@@ -50,7 +50,10 @@ _Below is an example of how you can instruct your audience on installing and set
 
 This project is used to scrape bitcoin data and upload it to Kaggle every day. I personally run it on a raspberry pi 5
 running ubuntu linux, and it works very well. If you want you can also easily edit the code to run with any website and data
-you want. I didn't design it for changing so sorry for any troubles that come along the way with that.
+you want. I didn't design it for changing so sorry for any troubles that come along the way with that. You can see the Kaggle
+Below
+
+[kaggle.com/datasets/erikhox/bitcoin-minute-data/data](https://www.kaggle.com/datasets/erikhox/bitcoin-minute-data/data)
 
 
 <!-- CONTRIBUTING -->
