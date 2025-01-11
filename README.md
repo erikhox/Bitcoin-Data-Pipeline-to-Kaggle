@@ -8,6 +8,7 @@ Here is my logic for the program just for a basis of understanding
 * organize the data and write it to a new line on a csv file
 * upload the data using a python script every 24 hours at 12:00 am
 
+![screenshot](https://github.com/user-attachments/assets/4ab86c76-f8a0-43e9-9123-133590670eb8)
 
 ## Getting Started
 
