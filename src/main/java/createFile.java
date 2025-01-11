@@ -20,7 +20,7 @@ public class createFile {
             writer.writeNext(header);
             writer.close();
         } catch (IOException e) {
-            System.out.println("error with file writing");
+            System.err.println("IOException error caused by writer");
         }
     }
 }

@@ -75,8 +75,11 @@ public class Main {
 
         //catching possible errors that can appear
         } catch (InterruptedException | IOException e) {
-            System.out.println("Error with sleep() or writer");
-            driver.quit();
+            if (e instanceof InterruptedException) {
+                System.err.println("InterruptedException error caused by sleep()");
+            } else {
+                System.err.println("IOException error caused by writer");
+            }
         }
     }
 }
