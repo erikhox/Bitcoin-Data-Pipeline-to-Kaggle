@@ -4,7 +4,7 @@ This is a personal project I made to practice my java skills before my semester 
 
 Here is my logic for the program just for a basis of understanding
 
-* Scrape this website every minute [https://bitcointicker.co/coinbase/btc/usd/10m/](https://bitcointicker.co/coinbase/btc/usd/10m/} for live data
+* Scrape this website every minute [https://bitcointicker.co/coinbase/btc/usd/10m/](https://bitcointicker.co/coinbase/btc/usd/10m/) for live data
 * organize the data and write it to a new line on a csv file
 * upload the data using a python script every 24 hours at 12:00 am
 
