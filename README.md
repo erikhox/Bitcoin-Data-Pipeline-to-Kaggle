@@ -4,7 +4,7 @@ This is a personal project I made to practice my java skills before my semester 
 
 Here is my logic for the program just for a basis of understanding
 
-* Scrape this website every minute, "https://bitcointicker.co/coinbase/btc/usd/10m/", for live data
+* Scrape this website every minute [https://bitcointicker.co/coinbase/btc/usd/10m/](https://bitcointicker.co/coinbase/btc/usd/10m/} for live data
 * organize the data and write it to a new line on a csv file
 * upload the data using a python script every 24 hours at 12:00 am
 
@@ -25,7 +25,7 @@ To get a local copy up and running follow these simple example steps.
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a Kaggle json by following the section under "Authentication" [kaggle.com/docs/api]([https://www.kaggle.com/docs/api])
+1. Get a Kaggle json by following the section under "Authentication" [kaggle.com/docs/api](https://www.kaggle.com/docs/api)
 2. Install maven on windows or linux
 3. put the json in the locations for windows and linux respectfully 
     * C:\Users\username\.kaggle\
